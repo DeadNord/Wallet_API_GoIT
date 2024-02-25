@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  app:
+    container_name: node_app
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - mongo
+    environment:
+      - PORT=${PORT}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER_NAME=${DB_USER_NAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - COOKIE_SECRET_KEY=${COOKIE_SECRET_KEY}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - EMAIL=${EMAIL}
+      - CLIENT_URL=${CLIENT_URL}
+
+  mongo:
+    container_name: mongo_db
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER_NAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DB_NAME}
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
