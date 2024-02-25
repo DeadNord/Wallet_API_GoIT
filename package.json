@@ -7,7 +7,7 @@
     "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js",
-    "deploy": "git push heroku dev:main"
+    "deploy": "fly deploy"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.6.2",
@@ -26,6 +26,7 @@
     "mongoose-paginate": "^5.0.3",
     "morgan": "1.10.0",
     "node-fetch": "^2.6.7",
+    "node-mailjet": "^6.0.5",
     "swagger-ui-express": "^4.4.0",
     "uuid": "^8.3.2"
   },
